@@ -60,7 +60,38 @@ public:
 
     // Function to delete all odd nodes from the linked list
     // Kartik (21bds025)
-    void deleteAllOddNodes();
+    void deleteAllOddNodes(){
+        if (head == nullptr) {
+        cout << "The list is empty.\n";
+        return;
+        }
+
+        Node* temp = head;
+        Node* prev = nullptr;
+        int position = 1;
+
+    // If the head is at an odd position, delete it
+        while (temp != nullptr && position % 2 != 0) {
+            head = temp->next; // Update head to the next node
+            delete temp;       // Delete the current head
+            temp = head;       // Move to the next node
+            position++;        // Increment position
+        }
+
+    // Traverse the rest of the list and delete odd-positioned nodes
+        while (temp != nullptr && temp->next != nullptr) {
+            if (position % 2 != 0) {
+                Node* oddNode = temp->next;
+                temp->next = oddNode->next; // Bypass the odd-positioned node
+                delete oddNode;             // Delete the odd-positioned node
+            } else {
+                temp = temp->next;          // Move to the next node
+            }
+            position++;                      // Increment position
+        }
+
+        cout << "All odd-positioned nodes have been deleted.\n";
+    }
 
     // Function to display the linked list
     void display();
