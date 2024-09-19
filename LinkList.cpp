@@ -2,18 +2,20 @@
 using namespace std;
 
 // Node structure
-class Node {
+class Node
+{
 public:
-    int data; // Data contained in the node
-    Node* next; // Pointer to the next node
+    int data;   // Data contained in the node
+    Node *next; // Pointer to the next node
 
     Node(int value) : data(value), next(nullptr) {} // Constructor
 };
 
 // Linked List class
-class LinkedList {
+class LinkedList
+{
 private:
-    Node* head; // Pointer to the head of the list
+    Node *head; // Pointer to the head of the list
 
 public:
     LinkedList() : head(nullptr) {} // Constructor
@@ -40,7 +42,27 @@ public:
 
     // Function to add a node in the middle of the linked list
     // Chinmay (21bds014)
-    void addToMiddle(int value, int position);
+    void addToMiddle(int value, int position)
+    {
+
+        Node *node = new Node(value);
+        Node *prev = nullptr;
+        Node *curr = head;
+        if (position == 0)
+        {
+            node->next = head;
+            head = node;
+        }
+        while (node != nullptr && position != 0)
+        {
+            prev = curr;
+            curr = curr->next;
+            position--;
+        }
+        prev->next = node;
+        node->next = curr;
+        return;
+    }
 
     // Function to delete the last node of the linked list
     // Milind (21bds038)
@@ -144,14 +166,16 @@ public:
 };
 
 // Menu function
-void menu() {
+void menu()
+{
 
     // Pranjal (21bds062)
-    
+
     LinkedList list;
     int choice, value, position;
 
-    do {
+    do
+    {
         cout << "Choose an action:\n";
         cout << "1. Add to End\n";
         cout << "2. Add to Middle\n";
@@ -165,48 +189,50 @@ void menu() {
         cout << "Enter your choice: ";
         cin >> choice;
 
-        switch (choice) {
-            case 1:
-                cout << "Enter value to add to end: ";
-                cin >> value;
-                list.addToEnd(value); // Add node to end
-                break;
-            case 2:
-                cout << "Enter value and position to add in middle: ";
-                cin >> value >> position;
-                list.addToMiddle(value, position); // Add node to middle
-                break;
-            case 3:
-                list.deleteFromEnd(); // Delete from end
-                break;
-            case 4:
-                cout << "Enter position to delete from middle: ";
-                cin >> position;
-                list.deleteFromMiddle(position); // Delete from middle
-                break;
-            case 5:
-                list.reverse(); // Reverse the linked list
-                break;
-            case 6:
-                list.deleteAllEvenNodes(); // Delete all even nodes
-                break;
-            case 7:
-                list.deleteAllOddNodes(); // Delete all odd nodes
-                break;
-            case 8:
-                list.display(); // Display the linked list
-                break;
-            case 0:
-                cout << "Exiting...\n"; // Exit option
-                break;
-            default:
-                cout << "Invalid choice! Please try again.\n";
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter value to add to end: ";
+            cin >> value;
+            list.addToEnd(value); // Add node to end
+            break;
+        case 2:
+            cout << "Enter value and position to add in middle: ";
+            cin >> value >> position;
+            list.addToMiddle(value, position); // Add node to middle
+            break;
+        case 3:
+            list.deleteFromEnd(); // Delete from end
+            break;
+        case 4:
+            cout << "Enter position to delete from middle: ";
+            cin >> position;
+            list.deleteFromMiddle(position); // Delete from middle
+            break;
+        case 5:
+            list.reverse(); // Reverse the linked list
+            break;
+        case 6:
+            list.deleteAllEvenNodes(); // Delete all even nodes
+            break;
+        case 7:
+            list.deleteAllOddNodes(); // Delete all odd nodes
+            break;
+        case 8:
+            list.display(); // Display the linked list
+            break;
+        case 0:
+            cout << "Exiting...\n"; // Exit option
+            break;
+        default:
+            cout << "Invalid choice! Please try again.\n";
         }
     } while (choice != 0);
 }
 
 // Main function
-int main() {
+int main()
+{
     menu();
     return 0;
 }
