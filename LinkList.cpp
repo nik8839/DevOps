@@ -191,7 +191,20 @@ public:
     }
 
     // Function to display the linked list
-    void display();
+    void display(){
+        if (head == nullptr) { 
+            cout << "The list is empty.\n";
+            return;
+        }
+
+        Node* temp = head; // Start at the head node
+        cout << "Linked List: ";
+        while (temp != nullptr) { // Traverse the list
+            cout << temp->data << " "; // Print each node's data
+            temp = temp->next; // Move to the next node
+        }
+        cout << endl;
+    }
 };
 
 // Menu function
@@ -236,13 +249,13 @@ void menu()
         case 4:
             cout << "Enter position to delete from middle: ";
             cin >> position;
-            list.deleteFromMiddle(position); // Delete from middle
+            // list.deleteFromMiddle(position); // Delete from middle
             break;
         case 5:
             list.reverse(); // Reverse the linked list
             break;
         case 6:
-            list.deleteAllEvenNodes(); // Delete all even nodes
+            // list.deleteAllEvenNodes(); // Delete all even nodes
             break;
         case 7:
             list.deleteAllOddNodes(); // Delete all odd nodes
