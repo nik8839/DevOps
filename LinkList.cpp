@@ -28,7 +28,30 @@ public:
 
     // Function to delete the last node of the linked list
     // Milind (21bds038)
-    void deleteFromEnd();
+    void deleteFromEnd()
+    {
+        if (head == nullptr) { // If the list is empty
+            cout << "The list is empty, nothing to delete.\n";
+            return;
+        }
+        
+        if (head->next == nullptr) { // If there is only one node
+            delete head; // Delete the head
+            head = nullptr; // Set head to null
+            cout << "Last node deleted. The list is now empty.\n";
+            return;
+        }
+
+        Node* current = head;
+        while (current->next->next != nullptr) {
+            current = current->next;
+        }
+
+        // Delete the last node
+        delete current->next;
+        current->next = nullptr; // Set the second last node's next to null
+        cout << "Last node deleted.\n";
+    }
 
     // Function to delete a node from the middle of the linked list
     // Rahul Singh (21bds054)
