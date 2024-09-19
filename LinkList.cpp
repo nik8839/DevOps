@@ -39,8 +39,29 @@ public:
     void reverse();
 
     // Function to delete all even nodes from the linked list
-    // Nikhil (21bds0)
-    void deleteAllEvenNodes();
+    // Nikhil (21bds044)
+    void deleteAllEvenNodes()
+    {
+                while (head != nullptr && head->data % 2 == 0) {
+            Node* temp = head;
+            head = head->next; 
+            delete temp; 
+        }
+
+        
+        Node* current = head;
+        while (current != nullptr && current->next != nullptr) {
+            if (current->next->data % 2 == 0) {
+                
+                Node* temp = current->next;
+                current->next = current->next->next; 
+                delete temp; 
+            } else {
+                
+                current = current->next;
+            }
+        }
+    }
 
     // Function to delete all odd nodes from the linked list
     // Kartik (21bds025)
