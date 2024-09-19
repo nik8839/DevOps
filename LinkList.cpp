@@ -21,8 +21,24 @@ public:
     LinkedList() : head(nullptr) {} // Constructor
 
     // Function to add a node at the end of the linked list
-    // Mayank (21bds037)
-    void addToEnd(int value);
+
+    // Mayank Kumar Shah(21bds037)
+    void addToEnd(int value){
+        // Create a new node
+        Node* newNode = new Node(value);
+        // If the list is empty, make the new node the head
+        if (head == nullptr) {
+            head = newNode;
+            return;
+        }
+        // Otherwise, traverse to the last node
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        // Add the new node at the end
+        temp->next = newNode;
+    }
 
     // Function to add a node in the middle of the linked list
     // Chinmay (21bds014)
@@ -61,7 +77,7 @@ public:
     void reverse();
 
     // Function to delete all even nodes from the linked list
-    // Nikhil (21bds0)
+    // Nikhil (21bds044)
     void deleteAllEvenNodes();
 
     // Function to delete all odd nodes from the linked list
