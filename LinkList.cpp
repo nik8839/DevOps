@@ -93,7 +93,36 @@ public:
 
     // Function to delete a node from the middle of the linked list
     // Rahul Singh (21bds054)
-    void deleteFromMiddle(int position);
+    void deleteFromMiddle(int position) {
+        if (head == nullptr) {
+            cout << "The list is empty, nothing to delete.\n";
+            return;
+        }
+
+        Node* curr = head;
+        Node* prev = nullptr;
+
+        if (position == 0) {
+            head = curr->next;
+            delete curr;
+            cout << "Node at position 0 deleted.\n";
+            return;
+        }
+
+        for (int i = 0; curr != nullptr && i < position; i++) {
+            prev = curr;
+            curr = curr->next;
+        }
+
+        if (curr == nullptr) {
+            cout << "Position out of bounds.\n";
+            return;
+        }
+
+        prev->next = curr->next;
+        delete curr;
+        cout << "Node at position " << position << " deleted.\n";
+    }
 
     // Function to reverse the linked list
     // Saksham (21bds058)
