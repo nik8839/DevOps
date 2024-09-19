@@ -66,7 +66,30 @@ public:
 
     // Function to delete the last node of the linked list
     // Milind (21bds038)
-    void deleteFromEnd();
+    void deleteFromEnd()
+    {
+        if (head == nullptr) { // If the list is empty
+            cout << "The list is empty, nothing to delete.\n";
+            return;
+        }
+        
+        if (head->next == nullptr) { // If there is only one node
+            delete head; // Delete the head
+            head = nullptr; // Set head to null
+            cout << "Last node deleted. The list is now empty.\n";
+            return;
+        }
+
+        Node* current = head;
+        while (current->next->next != nullptr) {
+            current = current->next;
+        }
+
+        // Delete the last node
+        delete current->next;
+        current->next = nullptr; // Set the second last node's next to null
+        cout << "Last node deleted.\n";
+    }
 
     // Function to delete a node from the middle of the linked list
     // Rahul Singh (21bds054)
@@ -74,7 +97,30 @@ public:
 
     // Function to reverse the linked list
     // Saksham (21bds058)
-    void reverse();
+    void reverse() {
+
+        Node* current = head; // Pointer to the current node
+        Node* prev = nullptr; // Pointer to the previous node
+        Node* next = nullptr; // Pointer to the next node
+
+        while (current != nullptr) {
+            next = current->next; // Store the next node
+            current->next = prev; // Point the current node to the previous node
+            prev = current; // Move the previous node to the current node
+            current = next; // Move the current node to the next node
+        }
+
+        head = prev; // Update the head of the list
+
+        // Display the reversed linked list
+        cout << "Reversed Linked List: ";
+        Node* temp = head;
+        while (temp != nullptr) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
 
     // Function to delete all even nodes from the linked list
     // Nikhil (21bds044)
@@ -82,7 +128,38 @@ public:
 
     // Function to delete all odd nodes from the linked list
     // Kartik (21bds025)
-    void deleteAllOddNodes();
+    void deleteAllOddNodes(){
+        if (head == nullptr) {
+        cout << "The list is empty.\n";
+        return;
+        }
+
+        Node* temp = head;
+        Node* prev = nullptr;
+        int position = 1;
+
+    // If the head is at an odd position, delete it
+        while (temp != nullptr && position % 2 != 0) {
+            head = temp->next; // Update head to the next node
+            delete temp;       // Delete the current head
+            temp = head;       // Move to the next node
+            position++;        // Increment position
+        }
+
+    // Traverse the rest of the list and delete odd-positioned nodes
+        while (temp != nullptr && temp->next != nullptr) {
+            if (position % 2 != 0) {
+                Node* oddNode = temp->next;
+                temp->next = oddNode->next; // Bypass the odd-positioned node
+                delete oddNode;             // Delete the odd-positioned node
+            } else {
+                temp = temp->next;          // Move to the next node
+            }
+            position++;                      // Increment position
+        }
+
+        cout << "All odd-positioned nodes have been deleted.\n";
+    }
 
     // Function to display the linked list
     void display();
