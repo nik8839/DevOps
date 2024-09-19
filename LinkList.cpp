@@ -36,7 +36,30 @@ public:
 
     // Function to reverse the linked list
     // Saksham (21bds058)
-    void reverse();
+    void reverse() {
+
+        Node* current = head; // Pointer to the current node
+        Node* prev = nullptr; // Pointer to the previous node
+        Node* next = nullptr; // Pointer to the next node
+
+        while (current != nullptr) {
+            next = current->next; // Store the next node
+            current->next = prev; // Point the current node to the previous node
+            prev = current; // Move the previous node to the current node
+            current = next; // Move the current node to the next node
+        }
+
+        head = prev; // Update the head of the list
+
+        // Display the reversed linked list
+        cout << "Reversed Linked List: ";
+        Node* temp = head;
+        while (temp != nullptr) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
 
     // Function to delete all even nodes from the linked list
     // Nikhil (21bds0)
